@@ -7,5 +7,7 @@ namespace CoreStructure3._1.Repository
     public interface IAccountRepository
     {
         Task<IdentityResult> CreateUserAsync(SignUpUserModel userModel);
+
+        Task<SignInResult> PasswordSignInAsync(SignInModel signInModel);
     }
 }

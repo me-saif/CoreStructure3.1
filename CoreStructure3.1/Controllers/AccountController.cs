@@ -47,5 +47,29 @@ namespace CoreStructure3._1.Controllers
 
             return View(userModel);
         }
+
+        [Route("login")]
+        public IActionResult SignIn()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public IActionResult SignIn(SignInModel signInModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = _accountRepository.PasswordSignInAsync(signInModel);
+                if (ModelState.IsValid)
+                {
+                    return RedirectToAction("");
+                }
+
+                ModelState.AddModelError("", "Invalid Credentials");
+            }
+
+            return View(signInModel);
+        }
     }
 }
